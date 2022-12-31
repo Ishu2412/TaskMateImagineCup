@@ -1,7 +1,7 @@
 <%- include("header") -%>
 
   <body>
-
+    <h1 class="heading">TaskMate</h1>
     <div class="box" id="heading">
       <h1> <%= title %> </h1>
     </div>
@@ -9,8 +9,11 @@
     <div class="box">
         <% for(var i = 0; i < newItem.length; i++){ %>
           <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="check" value=<%= newItem[i] %>>
             <p> <%= newItem[i] %> </p>
+            <form class="remove" action="/" method="post">
+              <button class="removeButton" type="submit" name="listRemove" value=<%= newItem[i] %> >-</button>
+            </form>
           </div>
         <% } %>
 

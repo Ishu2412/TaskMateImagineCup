@@ -14,20 +14,31 @@ let works = [];
 app.get("/", function(req, res){
 
 let day = date.getDate();
-
   res.render("list", {title: day, newItem: items});
 
 });
 
 app.post("/", function(req, res){
-  console.log(req.body);
+
   if(req.body.list === "work"){
-    works.push(req.body.work);
+    if(req.body.listRemove !== undefined){
+       let index = works.indexOf(req.body.listRemove);
+       works.splice(index);
+    }
+    else{
+      works.push(req.body.work);
+    }
 
     res.redirect("/work");
   }
   else{
-    items.push(req.body.work);
+    if(req.body.listRemove !== undefined){
+       let index = items.indexOf(req.body.listRemove);
+       items.splice(index, 1);
+    }
+    else{
+      items.push(req.body.work);
+    }
 
     res.redirect("/");
   }
